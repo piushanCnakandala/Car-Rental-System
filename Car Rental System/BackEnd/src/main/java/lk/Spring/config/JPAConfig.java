@@ -3,6 +3,7 @@ package lk.Spring.config;
 import jakarta.persistence.EntityManagerFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.jca.support.LocalConnectionFactoryBean;
 import org.springframework.jdbc.datasource.DriverManagerDataSource;
 import org.springframework.orm.jpa.JpaTransactionManager;
@@ -11,17 +12,20 @@ import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.orm.jpa.vendor.Database;
 import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.PlatformTransactionManager;
+import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 
 @Configuration
+@EnableJpaRepositories(basePackages = "lk.Spring.repo") //query liyana palce eka (repo) interdusing
+@EnableTransactionManagement
 public class JPAConfig {
     @Bean
     public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource ds, JpaVendorAdapter va){
         LocalContainerEntityManagerFactoryBean bean = new LocalContainerEntityManagerFactoryBean();
         bean.setJpaVendorAdapter(va);
         bean.setDataSource(ds);
-        bean.setPackagesToScan("lk.Spring.entity");
+        bean.setPackagesToScan("lk.Spring.entity"); //location in entity
         return bean;
     }
 
@@ -45,8 +49,8 @@ public class JPAConfig {
         return vendor;
 
     }
-@Bean
+/*@Bean
   public  PlatformTransactionManager transactionManager(EntityManagerFactory emf){
         return  new JpaTransactionManager(emf);
-  }
+  }*/
 }
