@@ -32,7 +32,11 @@ public class CustomerSearchImpl implements CustomerService {
 
     @Override
     public void deleteCustomer(String id) {
-
+         if (customerRepo.existsById(id)){
+             customerRepo.deleteById(id);
+         }else {
+             throw new RuntimeException("Customer delete failed");
+         }
     }
 
     @Override
