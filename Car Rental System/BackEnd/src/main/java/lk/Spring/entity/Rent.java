@@ -1,67 +1,33 @@
 package lk.Spring.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
+import org.modelmapper.internal.bytebuddy.asm.Advice;
+
+import javax.persistence.*;
+import java.time.LocalDate;
+import java.util.Date;
+import java.util.List;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Entity
+@ToString
 public class Rent {
-    @Id
+  @Id
     private String rentId;
     private String registrationNum;
-    private String cusId;
     private String reason;
-    private String date;
+    private LocalDate date;
     private String status;
-
-    public Rent() {
-    }
-
-    public String getRentId() {
-        return rentId;
-    }
-
-    public void setRentId(String rentId) {
-        this.rentId = rentId;
-    }
-
-    public String getRegistrationNum() {
-        return registrationNum;
-    }
-
-    public void setRegistrationNum(String registrationNum) {
-        this.registrationNum = registrationNum;
-    }
-
-    public String getCusId() {
-        return cusId;
-    }
-
-    public void setCusId(String cusId) {
-        this.cusId = cusId;
-    }
-
-    public String getReason() {
-        return reason;
-    }
-
-    public void setReason(String reason) {
-        this.reason = reason;
-    }
-
-    public String getDate() {
-        return date;
-    }
-
-    public void setDate(String date) {
-        this.date = date;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
+  @ManyToOne(cascade = {CascadeType.REFRESH, CascadeType.DETACH})
+  @JoinColumn(name = "cusId", referencedColumnName = "cusId", nullable = false)
+  private RegisteredCustomer cusId;
+  @OneToMany(mappedBy = "rent",cascade = CascadeType.ALL)
+  private List<RentDetails> rentDetails;
 
 }

@@ -1,45 +1,23 @@
 package lk.Spring.entity;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.ToString;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+
+@NoArgsConstructor
+@AllArgsConstructor
+@Data
 @Entity
+@ToString
+
 public class VehicleType {
-    @Id
+   @Id
     private String vehicleTypeId;
     private String vehicleType;
     private String losDamageWaiver;
 
-    public VehicleType() {
-    }
-
-    public VehicleType(String vehicleTypeId, String vehicleType, String losDamageWaiver) {
-        this.vehicleTypeId = vehicleTypeId;
-        this.vehicleType = vehicleType;
-        this.losDamageWaiver = losDamageWaiver;
-    }
-
-    public String getVehicleTypeId() {
-        return vehicleTypeId;
-    }
-
-    public void setVehicleTypeId(String vehicleTypeId) {
-        this.vehicleTypeId = vehicleTypeId;
-    }
-
-    public String getVehicleType() {
-        return vehicleType;
-    }
-
-    public void setVehicleType(String vehicleType) {
-        this.vehicleType = vehicleType;
-    }
-
-    public String getLosDamageWaiver() {
-        return losDamageWaiver;
-    }
-
-    public void setLosDamageWaiver(String losDamageWaiver) {
-        this.losDamageWaiver = losDamageWaiver;
-    }
 }

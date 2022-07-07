@@ -20,7 +20,7 @@ import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 
 @Configuration
-@EnableJpaRepositories(basePackages = "lk.Spring.repo") //query liyana palce eka (repo) interdusing
+@EnableJpaRepositories(basePackages = "lk.Spring.repo")
 @EnableTransactionManagement
 @PropertySource("classpath:application.properties")
 public class JPAConfig {
