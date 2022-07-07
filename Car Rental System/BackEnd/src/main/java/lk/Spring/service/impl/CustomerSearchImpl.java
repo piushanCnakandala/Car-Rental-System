@@ -5,6 +5,7 @@ import lk.Spring.entity.Customer;
 import lk.Spring.repo.CustomerRepo;
 import lk.Spring.service.CustomerService;
 import org.modelmapper.ModelMapper;
+import org.modelmapper.TypeToken;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -59,6 +60,7 @@ if(customerRepo.existsById(customerDTO.getId())){
 
     @Override
     public List<CustomerDTO> getAllCustomer() {
-        return null;
+        return modelMapper.map(customerRepo.findAll(),new TypeToken<List<CustomerDTO>>(){
+        }.getType());
     }
 }
