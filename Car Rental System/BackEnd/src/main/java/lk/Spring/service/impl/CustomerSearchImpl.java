@@ -44,13 +44,17 @@ public class CustomerSearchImpl implements CustomerService {
 if(customerRepo.existsById(customerDTO.getId())){
     customerRepo.save(modelMapper.map(customerDTO,Customer.class));
         }else{
-    throw new RuntimeException("Customer update failed");
+
         }
     }
 
     @Override
     public CustomerDTO searchCustomer(String id) {
-        return null;
+       if (customerRepo.existsById(id)){
+           return  modelMapper.map(customerRepo.findById(id).get(),CustomerDTO.class);
+       }else {
+           throw new RuntimeException("Invalid search");
+       }
     }
 
     @Override

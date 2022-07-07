@@ -35,4 +35,9 @@ public class CustomerController {
         return  new ResponseUtil(200,"update",null);
     }
 
+    @GetMapping(path = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil searchCustomer(@PathVariable String id){
+        return  new ResponseUtil(200,"Ok",customerService.searchCustomer(id));
+    }
+
 }
