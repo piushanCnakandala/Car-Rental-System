@@ -7,6 +7,7 @@ import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
+
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
@@ -14,11 +15,11 @@ import javax.persistence.Id;
 @ToString
 public class Rates {
     @Id
-    private String rateId;
-    private double dailyRate;
-    private double freeKmForADay;
-    private double monthlyRate;
-    private double freeKmForAMonth;
-    private double pricePerExtraKm;
+    private String rate_Id;
+    private double daily_Rate;
+    private double monthly_rate;
+    private int free_Km_Day;
+    private int free_Km_Month;
+    private double extra_Km_Price;
 
 }

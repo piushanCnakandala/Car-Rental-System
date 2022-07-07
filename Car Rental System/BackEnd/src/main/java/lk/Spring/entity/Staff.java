@@ -1,6 +1,5 @@
 package lk.Spring.entity;
 
-
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,12 +14,13 @@ import javax.persistence.Id;
 @Entity
 @ToString
 public class Staff {
-   @Id
-    private String staffId;
+    @Id
+    private String staff_Id;
     private String name;
-    private String email;
     private String address;
-    private String mobileNo;
+    private String type;
+    private String mobile_Number;
+    private String email;
     private String password;
 
 }
