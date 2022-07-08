@@ -1,5 +1,6 @@
 package lk.Spring.service.impl;
 
+import lk.Spring.dto.CustomerDTO;
 import lk.Spring.dto.StaffDTO;
 import lk.Spring.entity.Customer;
 import lk.Spring.entity.Staff;
@@ -52,7 +53,11 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public StaffDTO searchStaffMember(String id) {
-        return null;
+        if (staffRepo.existsById(id)){
+           return modelMapper.map(staffRepo.findById(id).get(),StaffDTO.class);
+        }else {
+            throw new RuntimeException("Invalid search");
+        }
     }
 
     @Override

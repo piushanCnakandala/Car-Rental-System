@@ -37,4 +37,9 @@ public class StaffController {
         return  new ResponseUtil(200,"update",null);
     }
 
+    @GetMapping(path = "/{id}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil searchStaffMember(@PathVariable String id){
+        return  new ResponseUtil(200,"Ok",staffService.searchStaffMember(id));
+    }
+
 }
