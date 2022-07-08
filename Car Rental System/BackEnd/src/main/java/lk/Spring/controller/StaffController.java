@@ -23,5 +23,11 @@ public class StaffController {
         return  new ResponseUtil(200,"saved",null);
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
+    @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil deleteStaffMember(@RequestParam String id){
+        staffService.deleteStaffMember(id);
+        return  new ResponseUtil(200,"Deleted",null);
+    }
 
 }

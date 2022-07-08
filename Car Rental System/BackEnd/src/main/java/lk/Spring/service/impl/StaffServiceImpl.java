@@ -32,7 +32,11 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public void deleteStaffMember(String id) {
-
+        if (staffRepo.existsById(id)) {
+            staffRepo.deleteById(id);
+        }else{
+            throw new RuntimeException("Staff Member delete failed");
+        }
     }
 
     @Override
