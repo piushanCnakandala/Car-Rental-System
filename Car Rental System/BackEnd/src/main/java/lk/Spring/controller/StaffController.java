@@ -1,5 +1,6 @@
 package lk.Spring.controller;
 
+import lk.Spring.dto.CustomerDTO;
 import lk.Spring.dto.StaffDTO;
 import lk.Spring.service.StaffService;
 import lk.Spring.util.ResponseUtil;
@@ -28,6 +29,12 @@ public class StaffController {
     public ResponseUtil deleteStaffMember(@RequestParam String id){
         staffService.deleteStaffMember(id);
         return  new ResponseUtil(200,"Deleted",null);
+    }
+
+    @PutMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil updateStaffMember(@RequestBody StaffDTO staffDTO){
+        staffService.updateStaffMember(staffDTO);
+        return  new ResponseUtil(200,"update",null);
     }
 
 }

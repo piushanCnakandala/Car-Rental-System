@@ -1,6 +1,7 @@
 package lk.Spring.service.impl;
 
 import lk.Spring.dto.StaffDTO;
+import lk.Spring.entity.Customer;
 import lk.Spring.entity.Staff;
 import lk.Spring.repo.StaffRepo;
 import lk.Spring.service.StaffService;
@@ -41,6 +42,11 @@ public class StaffServiceImpl implements StaffService {
 
     @Override
     public void updateStaffMember(StaffDTO staffDTO) {
+        if(staffRepo.existsById(staffDTO.getStaff_Id())){
+            staffRepo.save(modelMapper.map(staffDTO, Staff.class));
+        }else{
+            throw new RuntimeException("Staff Member Update failed");
+        }
 
     }
 
