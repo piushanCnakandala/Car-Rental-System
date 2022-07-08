@@ -42,4 +42,10 @@ public class StaffController {
         return  new ResponseUtil(200,"Ok",staffService.searchStaffMember(id));
     }
 
+    @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
+    public ResponseUtil getAllStaffMember(){
+        return  new ResponseUtil(200,"Ok",staffService.getAllStaffMembers());
+    }
 }
+
+
