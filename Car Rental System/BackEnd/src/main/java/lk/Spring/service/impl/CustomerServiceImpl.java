@@ -45,7 +45,7 @@ public class CustomerServiceImpl implements CustomerService {
 if(customerRepo.existsById(customerDTO.getId())){
     customerRepo.save(modelMapper.map(customerDTO,Customer.class));
         }else{
-
+             throw new RuntimeException("Customer Update failed");
         }
     }
 

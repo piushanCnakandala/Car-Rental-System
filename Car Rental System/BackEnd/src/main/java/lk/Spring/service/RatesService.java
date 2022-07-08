@@ -7,7 +7,7 @@ import java.util.List;
 
 public interface RatesService {
 
-    void SaveRates(RatesDTO ratesDTO);
+    void saveRates(RatesDTO ratesDTO);
     void deleteRates(String id);
     void updateRates(RatesDTO ratesDTO);
     RatesDTO searchRates(String id);
