@@ -60,7 +60,6 @@ if(customerRepo.existsById(customerDTO.getId())){
 
     @Override
     public List<CustomerDTO> getAllCustomer() {
-        return modelMapper.map(customerRepo.findAll(),new TypeToken<List<CustomerDTO>>(){
-        }.getType());
+        return modelMapper.map(customerRepo.findAll(),new TypeToken<List<CustomerDTO>>(){}.getType());
     }
 }
