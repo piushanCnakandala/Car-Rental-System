@@ -48,4 +48,3 @@ public class VehicleController {
         return  new ResponseUtil(200,"Ok",getAllVehicle());
     }
 }
-
