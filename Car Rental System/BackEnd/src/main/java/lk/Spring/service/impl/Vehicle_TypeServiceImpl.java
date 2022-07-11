@@ -40,7 +40,7 @@ public class Vehicle_TypeServiceImpl implements Vehicle_TypeService {
         if (vehicle_typeRepo.existsById(id)) {
            vehicle_typeRepo.deleteById(id);
         } else {
-            throw new RuntimeException("Rate delete failed");
+            throw new RuntimeException("vehicle type delete failed");
         }
     }
 
@@ -49,7 +49,7 @@ public class Vehicle_TypeServiceImpl implements Vehicle_TypeService {
         if (vehicle_typeRepo.existsById(vehicle_typeDTO.getVehicle_Type_Id())) {
             vehicle_typeRepo.save(modelMapper.map(vehicle_typeDTO, Vehicle_Type.class));
         } else {
-            throw new RuntimeException("Rater Update failed");
+            throw new RuntimeException("Vehicle Type Update failed");
         }
     }
 
