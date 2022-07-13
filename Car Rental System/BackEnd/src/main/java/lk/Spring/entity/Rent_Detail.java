@@ -20,9 +20,7 @@ public class Rent_Detail {
     private String rent_Id;
     @Id
     private String registration_Number;
-    @JsonFormat(pattern = "yyyy-mm-dd")
-    private LocalDate rent_Date;
-    @JsonFormat(pattern = "yyyy-mm-dd")
+    private LocalDate checking;
     private LocalDate return_Date;
     private int kilometers;
     private double rental_Cost;

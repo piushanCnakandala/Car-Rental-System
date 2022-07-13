@@ -18,9 +18,9 @@ public class RentDetailsDTO {
 
     private String rent_Id;
     private String registration_Number;
-    @JsonFormat(pattern = "yyyy-mm-dd")
-    private LocalDate rent_Date;
-    @JsonFormat(pattern = "yyyy-mm-dd")
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate checking;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate return_Date;
     private int kilometers;
     private double rental_Cost;

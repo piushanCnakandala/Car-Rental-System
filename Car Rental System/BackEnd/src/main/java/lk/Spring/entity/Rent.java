@@ -19,8 +19,7 @@ import java.util.List;
 public class Rent {
     @Id
     private String rent_Id;
-    @JsonFormat(pattern = "yyyy-mm-dd")
-    private LocalDate rent_Date;
+    private LocalDate date;
     private String status;
     private String reason;
 

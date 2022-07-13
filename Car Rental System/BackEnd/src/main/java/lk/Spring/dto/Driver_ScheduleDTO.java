@@ -1,5 +1,6 @@
 package lk.Spring.dto;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -15,7 +16,9 @@ public class Driver_ScheduleDTO {
     private String staff_Id;
     private String registration_Number;
     private String rent_Id;
-    private LocalDate rent_Date;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate checking;
+    @JsonFormat(pattern = "yyyy-MM-dd")
     private LocalDate return_Date;
 
 }

@@ -22,7 +22,7 @@ public class Driver_Schedule {
     private String registration_Number;
     @Id
     private String rent_Id;
-    private LocalDate rent_Date;
+    private LocalDate checking;
     private LocalDate return_Date;
 
     @ManyToOne(cascade = {CascadeType.REFRESH,CascadeType.DETACH})

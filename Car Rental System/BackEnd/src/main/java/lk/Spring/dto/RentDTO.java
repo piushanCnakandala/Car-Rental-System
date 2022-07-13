@@ -17,8 +17,8 @@ import java.util.List;
 @ToString
 public class RentDTO  {
     private String rent_Id;
-    @JsonFormat(pattern = "yyyy-mm-dd")
-    private LocalDate rent_Date;
+    @JsonFormat(pattern = "yyyy-MM-dd")
+    private LocalDate date;
     private String status;
     private String reason;
     private Customer customer;
