@@ -11,7 +11,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 @Data
 public class Drive_Schedule_PK implements Serializable {
-    private String staff_Id;
+    private String driver_Id;
     private String registration_Number;
     private String rent_Id;
 }

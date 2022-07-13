@@ -1,5 +1,6 @@
 package  lk.Spring.entity;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.sun.xml.internal.messaging.saaj.packaging.mime.util.LineInputStream;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -18,7 +19,8 @@ import java.util.List;
 public class Rent {
     @Id
     private String rent_Id;
-    private LocalDate date;
+    @JsonFormat(pattern = "yyyy-mm-dd")
+    private LocalDate rent_Date;
     private String status;
     private String reason;
 
@@ -28,4 +30,9 @@ public class Rent {
 
     @OneToMany(mappedBy = "rent",cascade = CascadeType.ALL)
     private List<Rent_Detail> rent_details;
+    @OneToMany(mappedBy = "rent", cascade = {CascadeType.PERSIST,CascadeType.MERGE})
+    private List<Driver_Schedule> driveSchedules;
+
 }
+
+

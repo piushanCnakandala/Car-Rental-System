@@ -20,6 +20,6 @@ public class VehicleDTO {
     private String status;
     private String fuel_Type;
     private String running_Km;
-    private Rates rates;
-    private Vehicle_Type vehicleType;
+    private RatesDTO rates;
+    private Vehicle_TypeDTO vehicleType;
 }
