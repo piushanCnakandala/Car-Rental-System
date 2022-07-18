@@ -4,6 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/BackEnd/BackEnd.iml" filepath="$PROJECT_DIR$/BackEnd/BackEnd.iml" />
       <module fileurl="file://$PROJECT_DIR$/Car Rental System.iml" filepath="$PROJECT_DIR$/Car Rental System.iml" />
+      <module fileurl="file://$PROJECT_DIR$/front_end/front_end.iml" filepath="$PROJECT_DIR$/front_end/front_end.iml" />
     </modules>
   </component>
 </project>
