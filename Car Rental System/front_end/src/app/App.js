@@ -1,10 +1,15 @@
-import React from "react";
-import Dashboard from "../pages/dashboard";
 
+import AppBar from "../common/appBar";
 
 function App(){
     return(
-        <Dashboard/>
+        <div>
+           {/* <div className={'bg-red-500'}>
+               fffffffff
+            </div>*/}
+            <AppBar />
+        </div>
+
     );
 }
 
