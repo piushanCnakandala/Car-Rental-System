@@ -1,26 +1,26 @@
 import React, {Component} from 'react';
 import {styleSheet} from "./style";
 import {withStyles} from "@mui/styles";
+import AppBar from '../../components/common/appBar'
+import Hero from "../../components/Hero";
 
 
-class Dashboard extends Component{
+class Dashboard extends Component {
     constructor(props) {
         super(props);
     }
+
     render() {
-        const {classes}=this.props
-        return(
-            <div className={classes.container}>
-                <div className={classes.nav_bar_container}></div>
-                <div className={classes.form_container}>
-                    <div className={classes.img_background}>
-                        <img src="" alt=""/>
-                    </div>
-                </div>
+        const {classes} = this.props
+        return (
+            <div>
+                <AppBar/>
+                <Hero/>
 
             </div>
         )
     }
 
 }
-export default withStyles(styleSheet) (Dashboard)
+
+export default withStyles(styleSheet)(Dashboard)

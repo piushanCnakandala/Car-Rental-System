@@ -4,11 +4,12 @@ export const styleSheet={
         flexWrap: 'wrap',
         flexDirection:'row',
         height:'11vh',
-        width:'100vw'
+        width:'100vw',
+        position:'absolute'
 },
 
     logo_container:{
-        backgroundColor:'#003153',
+        backgroundColor:'#000000',
         height: '100%',
         width: '10%',
         display:'flex',
@@ -18,13 +19,15 @@ export const styleSheet={
     },
 
     nav_title_container:{
-        backgroundColor:'#003153',
+        display:'flex',
+        alignItems: 'center',
+        backgroundColor:'#000000',
         height: '100%',
         width: '70%',
     },
 
     logginbutton_container:{
-        backgroundColor:'#003153',
+        backgroundColor:'#1c2841',
         height: '100%',
         width: '20%'
     },

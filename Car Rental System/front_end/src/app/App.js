@@ -1,5 +1,6 @@
 
-import AppBar from "../common/appBar";
+import AppBar from "../components/common/appBar";
+import Dashboard from "../pages/dashboard";
 
 function App(){
     return(
@@ -7,7 +8,8 @@ function App(){
            {/* <div className={'bg-red-500'}>
                fffffffff
             </div>*/}
-            <AppBar />
+           {/* <AppBar />*/}
+            <Dashboard/>
         </div>
 
     );

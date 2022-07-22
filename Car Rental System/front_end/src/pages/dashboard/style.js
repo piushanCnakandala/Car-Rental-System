@@ -8,14 +8,8 @@ export const styleSheet={
     },
 
     nav_bar_container:{
-        backgroundColor:'red',
-        height: '15%',
+        height: '11vh',
         width: '100%'
     },
 
-    form_container:{
-        backgroundColor:'blue',
-        height: '85%',
-        width: '100%'
-    }
 }
