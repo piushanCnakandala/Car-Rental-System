@@ -23,13 +23,15 @@ export const styleSheet={
         alignItems: 'center',
         backgroundColor:'#000000',
         height: '100%',
-        width: '70%',
+        width: '80%',
     },
 
     logginbutton_container:{
-        backgroundColor:'#1c2841',
+        backgroundColor:'#000000',
+        display:'flex',
+        alignItems: 'center',
         height: '100%',
-        width: '20%'
+        width: '10%'
     },
     img_logo:{
         display:'flex',
