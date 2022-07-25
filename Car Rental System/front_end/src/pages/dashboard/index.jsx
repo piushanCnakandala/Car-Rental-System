@@ -4,6 +4,7 @@ import {withStyles} from "@mui/styles";
 import AppBar from '../../components/common/appBar'
 import Hero from "../../components/Hero";
 import Footer from "../../components/Footer/Footer";
+import ListVehicle from "../../components/ListOfVehicles";
 
 
 class Dashboard extends Component {
@@ -17,6 +18,7 @@ class Dashboard extends Component {
             <div>
                 <AppBar/>
                 <Hero/>
+                <ListVehicle/>
                 <Footer/>
 
             </div>
