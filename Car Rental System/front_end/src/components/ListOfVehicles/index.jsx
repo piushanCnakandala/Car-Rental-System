@@ -1,5 +1,8 @@
 import { Container, Grid, Typography } from "@mui/material";
 import React, { Component } from "react";
+import PremiumCars from '../CarSection/PremiumCars/index';
+import LuxuryCars from './../CarSection/LuxuryCars/index';
+import GeneralCars from './../CarSection/GeneralCars/index';
 
 class ListVehicle extends Component {
     render() {
@@ -24,10 +27,10 @@ class ListVehicle extends Component {
                     >
                     </Grid>
 
-{/*
+
                     <GeneralCars/>
                     <PremiumCars/>
-                    <LuxuryCars/>*/}
+                    <LuxuryCars/>
 
                     {/* General Car Section End */}
                 </Grid>
