@@ -4,6 +4,7 @@ import {styleSheet} from "./styles";
 import {withStyles} from "@mui/styles";
 import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
 import CommonButton from "../common/Button";
+import VehicleTypeService from "../../services/VehicleTypeService";
 
 
 class AddVehicleType extends Component {
@@ -19,8 +20,11 @@ class AddVehicleType extends Component {
     }
 
     handleSubmit = async () => {
-        console.log("Hi handle");
-        console.log(this.state.formData);
+        let formData =this.state.formData
+        let res = await VehicleTypeService.postVehicleType(formData)
+        if (res.status ==201){
+
+        }
     };
 
     handleChange = (event) => {
