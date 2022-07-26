@@ -1,9 +1,10 @@
-import { Grid, Link, Typography } from "@mui/material";
+import { Grid, Typography } from "@mui/material";
 import React, { Component } from "react";
 import CommonButton from "../../../../components/common/Button";
 import { TextValidator, ValidatorForm } from "react-material-ui-form-validator";
 import { styleSheet } from "./style";
 import {withStyles} from "@mui/styles";
+import { Link } from "react-router-dom";
 
 
 class LoginAdmin extends Component {
@@ -104,13 +105,18 @@ class LoginAdmin extends Component {
                 <Typography variant="p" className="text-slate-500 -mt-3">
                   Frogot password ?
                 </Typography>
-                <CommonButton
-                  size="large"
-                  variant="contained"
-                  label="Login"
-                  type="submit"
-                  className="text-white bg-blue-500 font-bold tracking-wide"
-                />
+                <Link to="dashboard">
+                  <CommonButton
+                      size="large"
+                      variant="contained"
+                      label="Login"
+                      type="submit"
+                      onClick={() => {
+                        this.checkValidity();
+                      }}
+                      className="text-white w-full bg-blue-500 font-bold tracking-wide"
+                  />
+                </Link>
               </Grid>
             </ValidatorForm>
           </div>
