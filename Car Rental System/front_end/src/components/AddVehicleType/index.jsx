@@ -11,7 +11,9 @@ class AddVehicleType extends Component {
         super(props);
         this.state = {
             formData: {
-                userName: "", password: "",
+                "vehicle_Type_Id":'',
+                 "type":'',
+                  "loss_Damage_Waiver":''
             },
         };
     }
@@ -55,18 +57,17 @@ class AddVehicleType extends Component {
                         <TextValidator
                             label="Vehicle Type ID"
                             onChange={this.handleChange}
-                            name="password"
+                            name="vehicle_Type_Id"
                             value={this.state.formData.password}
                             validators={["required"]}
                             errorMessages={["This field is required"]}
-                            type={"password"}
                             className="w-full"
                             style={{minWidth: '100%'}}
                         />
                         <TextValidator
                             label="Type"
                             onChange={this.handleChange}
-                            name="password"
+                            name="type"
                             value={this.state.formData.password}
                             validators={["required"]}
                             errorMessages={["This field is required"]}
@@ -77,7 +78,7 @@ class AddVehicleType extends Component {
                         <TextValidator
                             label="L.D.W"
                             onChange={this.handleChange}
-                            name="password"
+                            name="loss_Damage_Waiver"
                             value={this.state.formData.password}
                             validators={["required"]}
                             errorMessages={["This field is required"]}
