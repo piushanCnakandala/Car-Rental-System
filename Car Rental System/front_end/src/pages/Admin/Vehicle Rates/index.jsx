@@ -74,6 +74,51 @@ class VehicleRates extends Component {
         };
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevState.popup == true){
+            this.loadData()
+        }
+    }
+
+    deleteRates = async (id) => {
+        let params = {
+            rateID: id
+        }
+        let res = await RateService.deleteRates(params);
+        console.log(res)
+        if (res.status === 200) {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'success'
+            });
+            this.loadData();
+        } else {
+            this.setState({
+                alert: true,
+                message: res.message,
+                severity: 'error'
+            });
+        }
+    }
+
+    updateRates = async (data) => {
+        const row = data;
+        let vehicleRates = {
+            "rateId": row.rate_Id,
+            "monthlyRate": row.monthly_rate,
+            "dailyRate": row.daily_Rate,
+            "freeKmForaMonth": row.free_Km_Month,
+            "freeKmForaDay": row.free_Km_Day,
+            "pricePerExtraKm": row.extra_Km_Price
+        }
+        await this.setState({vehicleRates: vehicleRates});
+        await this.setState({
+            popup: true,
+            isUpdate: true
+        })
+    }
+
     async loadData() {
          let resp = await RateService.fetchRates();
         let nData = [];
