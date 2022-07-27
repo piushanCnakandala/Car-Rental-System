@@ -1,4 +1,4 @@
-import {Dialog, DialogContent, DialogTitle, Grid, IconButton, Typography,} from "@mui/material";
+import {Dialog, DialogContent, DialogTitle, Grid, IconButton, Tooltip, Typography,} from "@mui/material";
 import React, {Component} from "react";
 import Navbar from "../../../components/common/Navbar/Admin";
 import Sidebar from "../../../components/common/Sidebar";
@@ -10,6 +10,8 @@ import {styleSheet} from "./styles";
 import CloseIcon from "@mui/icons-material/Close";
 import AddVehicleRates from "../../../components/AddVehicleRates";
 import RateService from "../../../services/RateService";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 class VehicleRates extends Component {
     constructor(props) {
@@ -69,6 +71,26 @@ class VehicleRates extends Component {
                     field: "action",
                     headerName: "Action",
                     width: 228,
+                    renderCell: (params) => {
+                        return (
+                            <>
+                                <Tooltip title="Edit">
+                                    <IconButton onClick={async () => {
+                                        await this.updateRates(params.row);
+                                    }}>
+                                        <EditIcon className={'text-blue-500'}/>
+                                    </IconButton>
+                                </Tooltip>
+                                <Tooltip title="Delete">
+                                    <IconButton onClick={async () => {
+                                        await this.deleteRates(params.row.rateId);
+                                    }}>
+                                        <DeleteIcon className={'text-red-500'}/>
+                                    </IconButton>
+                                </Tooltip>
+                            </>
+                        )
+                    }
                 },
             ],
         };
@@ -82,7 +104,7 @@ class VehicleRates extends Component {
 
     deleteRates = async (id) => {
         let params = {
-            rateID: id
+            rate_Id: id
         }
         let res = await RateService.deleteRates(params);
         console.log(res)
