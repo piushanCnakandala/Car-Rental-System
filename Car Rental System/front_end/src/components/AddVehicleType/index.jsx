@@ -5,27 +5,50 @@ import {withStyles} from "@mui/styles";
 import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
 import CommonButton from "../common/Button";
 import VehicleTypeService from "../../services/VehicleTypeService";
-
+import CustomSnackBar from "../common/SnakBar";
 
 class AddVehicleType extends Component {
     constructor(props) {
         super(props);
         this.state = {
             formData: {
-                "vehicle_Type_Id":'',
-                 "type":'',
-                  "loss_Damage_Waiver":''
+                vehicle_Type_Id:'',
+                 type:'',
+                  loss_Damage_Waiver:''
             },
+            alert:false,
+            message:'',
+            severity:''
         };
     }
 
     handleSubmit = async () => {
         let formData =this.state.formData
         let res = await VehicleTypeService.postVehicleType(formData)
-        if (res.status ==201){
-
+        if (res.status === 201) {
+            this.setState({
+                alert: true,
+                message: 'Vehicle Type Saved!',
+                severity: 'success'
+            });
+            this.clearFields();
+        }else {
+            this.setState({
+                alert: true,
+                message: 'Vehicle Type d Unsuccessful!',
+                severity: 'error'
+            });
         }
     };
+
+
+    clearFields = () =>{
+        this.setState({
+            vehicle_Type_Id:"",
+            type:"",
+            loss_Damage_Waiver:""
+        })
+    }
 
     handleChange = (event) => {
         let id = event.target.name;
@@ -48,7 +71,10 @@ class AddVehicleType extends Component {
 
     render() {
         const {classes} = this.props;
-        return (<Grid container direction={'row'} xs={12} className={classes.container}>
+        return (
+
+            <>
+            <Grid container direction={'row'} xs={12} className={classes.container}>
             <ValidatorForm
                 onSubmit={this.handleSubmit}
                 onError={(errors) => console.log(errors)}
@@ -104,6 +130,17 @@ class AddVehicleType extends Component {
             </ValidatorForm>
 
         </Grid>);
+                <CustomSnackBar
+                    open={this.state.alert}
+                    onClose={() => {
+                        this.setState({alert: false})
+                    }}
+                    message={this.state.message}
+                    autoHideDuration={3000}
+                    severity={this.state.severity}
+                    variant={'filled'}
+                />
+            </>);
     }
 }
 
