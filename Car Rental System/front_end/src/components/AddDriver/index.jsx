@@ -13,10 +13,10 @@ class AddDriver extends Component {
         super(props);
         this.state = {
             formData: {
-                driverId: props.isUpdate ? props.obj.driverId : '',
+                driver_Id: props.isUpdate ? props.obj.driver_Id : '',
                 name: props.isUpdate ? props.obj.name : '',
                 address: props.isUpdate ? props.obj.address : '',
-                mobileNo: props.isUpdate ? props.obj.mobileNo : '',
+                mobile_Number: props.isUpdate ? props.obj.mobile_Number : '',
                 email: props.isUpdate ? props.obj.email : '',
                 password: props.isUpdate ? props.obj.password : '',
                 status: props.isUpdate ? props.obj.status : 'Available',
@@ -28,18 +28,6 @@ class AddDriver extends Component {
         };
     }
 
-    /*static getDerivedStateFromProps(props,state){
-        console.log(props)
-        return{
-            driverId:props.obj.driverId,
-            name: props.obj.name,
-            address:props.obj.address,
-            mobileNo:props.obj.mobileNo,
-            email:props.obj.email,
-            password:props.obj.password,
-            status:props.obj.status
-        };
-    }*/
 
     handleSubmit = async () => {
         let formData = this.state.formData;
@@ -94,10 +82,10 @@ class AddDriver extends Component {
 
     clearFields = () => {
         this.setState({
-            driverId: "",
+            driver_Id: "",
             name: "",
             address: "",
-            mobileNo: "",
+            mobile_Number: "",
             email: "",
             password: "",
             status: "Available"
@@ -109,8 +97,8 @@ class AddDriver extends Component {
 
         switch (id) {
             case "driverId":
-                const driverId = event.target.value;
-                this.setState(Object.assign(this.state.formData, {driverId: driverId}));
+                const driver_Id = event.target.value;
+                this.setState(Object.assign(this.state.formData, {driver_Id: driver_Id}));
                 // this.setState({ userId });
                 break;
             case "name":
@@ -124,8 +112,8 @@ class AddDriver extends Component {
                 // this.setState({ userId });
                 break;
             case "mobileNo":
-                const mobileNo = event.target.value;
-                this.setState(Object.assign(this.state.formData, {mobileNo: mobileNo}));
+                const mobile_Number = event.target.value;
+                this.setState(Object.assign(this.state.formData, {mobile_Number: mobile_Number}));
                 // this.setState({ userId });
                 break;
             case "email":
@@ -188,8 +176,8 @@ class AddDriver extends Component {
                                 <TextValidator
                                     label="Driver ID"
                                     onChange={this.handleChange}
-                                    name="driverId"
-                                    value={this.state.formData.driverId}
+                                    name="driver_Id"
+                                    value={this.state.formData.driver_Id}
                                     validators={["required"]}
                                     errorMessages={["This field is required"]}
                                     className="w-full"
@@ -218,8 +206,8 @@ class AddDriver extends Component {
                                 <TextValidator
                                     label="Mobile Number"
                                     onChange={this.handleChange}
-                                    name="mobileNo"
-                                    value={this.state.formData.mobileNo}
+                                    name="mobile_Number"
+                                    value={this.state.formData.mobile_Number}
                                     validators={["required"]}
                                     errorMessages={["This field is required"]}
                                     className="w-full"
