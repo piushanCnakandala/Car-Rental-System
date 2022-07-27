@@ -9,6 +9,7 @@ import {withStyles} from "@mui/styles";
 import {styleSheet} from "./styles";
 import CloseIcon from "@mui/icons-material/Close";
 import AddVehicleRates from "../../../components/AddVehicleRates";
+import RateService from "../../../services/RateService";
 
 class VehicleRates extends Component {
     constructor(props) {
@@ -26,46 +27,46 @@ class VehicleRates extends Component {
             //  for data table
             columns: [
                 {
-                    field: "registrationNumber",
+                    field: "rate_Id",
                     headerName: "Rate ID",
                     width: 228,
                 },
 
                 {
-                    field: "Type",
+                    field: "daily_Rate",
                     headerName: "Daily Rate",
                     width: 228,
                 },
 
                 {
-                    field: "L.D.W.",
+                    field: "free_Km_Day",
                     headerName: "Free Km For a Day",
                     width: 228,
                     sortable: false,
                 },
 
                 {
-                    field: "Type",
+                    field: "free_Km_Month",
                     headerName: "Free Km For a Month",
                     width: 228,
                 },
 
                 {
-                    field: "L.D.W.",
+                    field: "monthly_rate",
                     headerName: "Monthly Rate",
                     width: 228,
                     sortable: false,
                 },
 
                 {
-                    field: "L.D.W.",
+                    field: "extra_Km_Price",
                     headerName: "Price Per Extra Km",
                     width: 228,
                     sortable: false,
                 },
 
                 {
-                    field: "Action",
+                    field: "action",
                     headerName: "Action",
                     width: 228,
                 },
@@ -74,14 +75,19 @@ class VehicleRates extends Component {
     }
 
     async loadData() {
-        // let resp = await PostService.fetchPosts();
-        const data = [];
-        this.setState({
-            loaded: true,
-            data: data,
-        });
-        console.log(this.state.data);
-        // console.log(JSON.stringify(resp.data));
+         let resp = await RateService.fetchRates();
+        let nData = [];
+        if (resp.status === 200) {
+            resp.data.data.map((value, index) => {
+                value.id = value.rate_Id;
+                nData.push(value)
+            })
+
+            this.setState({
+                loaded: true,
+                data: nData,
+            });
+        }
     }
 
     componentDidMount() {
