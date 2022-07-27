@@ -33,7 +33,7 @@ class DriverManage extends Component {
             //  for data table
             columns: [
                 {
-                    field: "driverId",
+                    field: "driver_Id",
                     headerName: "Driver Id",
                     width: 200,
                 },
@@ -52,7 +52,7 @@ class DriverManage extends Component {
                 },
 
                 {
-                    field: "mobileNo",
+                    field: "mobile_Number",
                     headerName: "Mobile No.",
                     width: 200,
                     sortable: false,
@@ -105,23 +105,53 @@ class DriverManage extends Component {
             ],
         };
     }
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        if (prevState.popup == true){
+            this.loadData()
+        }
+    }
 
-    updateDriver = (data) => {
-        const rows = data;
-        /*let updateDrivers = {
-            driverId: row.driverId,
+    deleteDriver = async (id) => {
+        let params = {
+            driverId: id
+        }
+        let res = await DriverService.deleteDriver(params);
+        console.log(res)
+        if (res.status === 200) {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'success'
+            });
+            this.loadData();
+        } else {
+            this.setState({
+                alert: true,
+                message: res.message,
+                severity: 'error'
+            });
+        }
+    }
+    updateDriver = async (data) => {
+        const row = data;
+        let updateDrivers = {
+            driver_Id: row.driver_Id,
             name: row.name,
             address: row.address,
-            mobileNo: row.mobileNo,
+            mobile_Number: row.mobile_Number,
             email: row.email,
             password: row.password,
-            status: row.state
-        }*/
+            status: row.status
+        }
 
         /*let {updateDriver} = this.state;
-        updateDriver.push(updateDrivers);
-        this.setState({updateDriver: updateDrivers});*/
-        console.log(rows)
+        updateDriver.push(updateDrivers);*/
+        await this.setState({updateDriver: updateDrivers});
+        await this.setState({
+            popup: true,
+            isUpdate: true
+        })
+        console.log(this.state.updateDriver)
 
     }
 
@@ -130,7 +160,7 @@ class DriverManage extends Component {
         let nData = [];
         if (resp.status === 200) {
             resp.data.data.map((value, index) => {
-                value.id = value.driverId;
+                value.id = value.driver_Id;
                 nData.push(value)
             })
 
