@@ -10,6 +10,8 @@ import {styleSheet} from "./styles";
 import CloseIcon from "@mui/icons-material/Close";
 import AddVehicleType from "../../../components/AddVehicleType";
 import VehicleTypeService from "../../../services/VehicleTypeService";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
 
 class VehicleType extends Component {
     constructor(props) {
