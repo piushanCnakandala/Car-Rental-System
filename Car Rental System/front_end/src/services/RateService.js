@@ -14,12 +14,36 @@ class RateService{
         return await promise;
     }
 
-    fetchPosts = async (data) => {
+    fetchRates = async (data) => {
         const promise = new Promise((resolve, reject) => {
             axios.get('rates')
                 .then((res) => {
                     return resolve(res)
                 }).catch((err) => {
+                return resolve(err)
+            })
+        });
+        return await promise;
+    }
+
+    deleteRates = async (params) => {
+        const promise = new Promise((resolve, reject) => {
+            axios.delete('rates', {params:params})
+                .then((res) => {
+                    return resolve(res)
+                }).catch((err) => {
+                return resolve(err)
+            })
+        });
+        return await promise;
+    }
+
+    updateRates = async (data) =>{
+        const promise = new Promise((resolve, reject) => {
+            axios.put('rates',data)
+                .then((res)=>{
+                    return resolve(res)
+                }).catch((err)=>{
                 return resolve(err)
             })
         });
