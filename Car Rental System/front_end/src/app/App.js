@@ -7,6 +7,7 @@ import VehicleManage from "../pages/Admin/Vehicle Manage";
 import VehicleRates from "../pages/Admin/Vehicle Rates";
 import VehicleType from "../pages/Admin/Vehicle Types";
 import Dashboard from "../pages/dashboard";
+import DriverManage from "../pages/Admin/Driver Manage";
 
 
 function AdminManageDashboard() {
@@ -29,6 +30,7 @@ function App() {
                     <Route path="vehiclemanage" element={<VehicleManage />} />
                     <Route path="vehiclerates" element={<VehicleRates/>}/>
                     <Route path="vehicletype" element={<VehicleType/>}/>
+                    <Route path="drivermanage" element={<DriverManage/>}/>
                     <Route path="test" element={<AddNewVehicle />} />
                 </Route>}
             </Route>

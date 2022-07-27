@@ -12,9 +12,9 @@ class AddVehicleType extends Component {
         super(props);
         this.state = {
             formData: {
-                vehicle_Type_Id:'',
-                 type:'',
-                  loss_Damage_Waiver:''
+                vehicle_Type_Id: props.isUpdate?props.typeObj.vehicle_Type_Id:'',
+                type: props.isUpdate?props.typeObj.type:'',
+                loss_Damage_Waiver:props.isUpdate?props.typeObj.loss_Damage_Waiver:'',
             },
             alert:false,
             message:'',
@@ -23,45 +23,61 @@ class AddVehicleType extends Component {
     }
 
     handleSubmit = async () => {
-        let formData =this.state.formData
-        let res = await VehicleTypeService.postVehicleType(formData)
-        if (res.status === 201) {
-            this.setState({
-                alert: true,
-                message: 'Vehicle Type Saved!',
-                severity: 'success'
-            });
-            this.clearFields();
+        let formData = this.state.formData
+        if (this.props.isUpdate){
+            let res = await VehicleTypeService.updateVehicleType(formData)
+            if (res.status === 200) {
+                this.setState({
+                    alert:true,
+                    message:'Vehicle Type Updated!',
+                    severity:'success'
+                })
+
+            }else {
+                this.setState({
+                    alert:false,
+                    message:'Vehicle Type Update Unsuccessful!',
+                    severity:'error'
+                })
+            }
+
         }else {
-            this.setState({
-                alert: true,
-                message: 'Vehicle Type d Unsuccessful!',
-                severity: 'error'
-            });
+            let res = await VehicleTypeService.postVehicleType(formData)
+            if (res.status === 201) {
+                this.setState({
+                    alert:true,
+                    message:'Vehicle Type Saved!',
+                    severity:'success'
+                })
+
+            }else {
+                this.setState({
+                    alert:false,
+                    message:'Vehicle Type Saved Unsuccessful!',
+                    severity:'error'
+                })
+            }
         }
+
     };
-
-
-    clearFields = () =>{
-        this.setState({
-            vehicle_Type_Id:"",
-            type:"",
-            loss_Damage_Waiver:""
-        })
-    }
 
     handleChange = (event) => {
         let id = event.target.name;
         switch (id) {
-            case "userName":
-                const userName = event.target.value;
-                this.setState(Object.assign(this.state.formData, {userName: userName}));
+            case "vehicle_Type_Id":
+                const vehicle_Type_Id = event.target.value;
+                this.setState(Object.assign(this.state.formData, {vehicle_Type_Id: vehicle_Type_Id}));
                 // this.setState({ userId });
                 break;
 
-            case "password":
-                const password = event.target.value;
-                this.setState(Object.assign(this.state.formData, {password: password}));
+            case "type":
+                const type = event.target.value;
+                this.setState(Object.assign(this.state.formData, {type: type}));
+                break;
+
+            case "loss_Damage_Waiver":
+                const loss_Damage_Waiver = event.target.value;
+                this.setState(Object.assign(this.state.formData, {loss_Damage_Waiver: loss_Damage_Waiver}));
                 break;
 
             default:
