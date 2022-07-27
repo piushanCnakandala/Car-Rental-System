@@ -1,10 +1,10 @@
 import axios from "../axios"
 import qs from "qs";
 
-class RateService{
-    postRates= async (data) => {
+class VehicleTypeService {
+    postVehicleType= async (data) => {
         const promise =new Promise((resolve,reject)=>{
-            axios.post('rates',qs.stringify(data))
+            axios.post('driver',qs.stringify(data))
                 .then((res) =>{
                     return resolve(res)
                 }).catch((err) =>{
@@ -16,7 +16,7 @@ class RateService{
 
     fetchPosts = async (data) => {
         const promise = new Promise((resolve, reject) => {
-            axios.get('rates')
+            axios.get('driver')
                 .then((res) => {
                     return resolve(res)
                 }).catch((err) => {
@@ -26,4 +26,4 @@ class RateService{
         return await promise;
     }
 }
-export  default new RateService();
+export  default new VehicleTypeService();

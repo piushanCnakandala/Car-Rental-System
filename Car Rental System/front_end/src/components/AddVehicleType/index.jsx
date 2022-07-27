@@ -101,7 +101,6 @@ class AddVehicleType extends Component {
                             value={this.state.formData.password}
                             validators={["required"]}
                             errorMessages={["This field is required"]}
-                            type={"password"}
                             className="w-full"
                             style={{minWidth: '100%'}}
                         />
@@ -112,7 +111,6 @@ class AddVehicleType extends Component {
                             value={this.state.formData.password}
                             validators={["required"]}
                             errorMessages={["This field is required"]}
-                            type={"password"}
                             className="w-full"
                             style={{minWidth: '100%'}}
                         />
