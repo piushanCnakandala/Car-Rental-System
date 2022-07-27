@@ -1,8 +1,8 @@
 import axios from "../axios"
 import qs from "qs";
 
-class DriverService {
-    postDriver= async (data) => {
+class VehicleTypeService {
+    postVehicleType= async (data) => {
         const promise =new Promise((resolve,reject)=>{
           axios.post('vehicleType',qs.stringify(data))
               .then((res) =>{
@@ -14,7 +14,7 @@ class DriverService {
         return await promise;
     }
 
-    fetchPosts = async (data) => {
+    fetchVehicleType = async (data) => {
         const promise = new Promise((resolve, reject) => {
             axios.get('vehicleType')
                 .then((res) => {
@@ -25,5 +25,29 @@ class DriverService {
         });
         return await promise;
     }
+    deleteVehicleType = async (params) => {
+        console.log(params)
+        const promise = new Promise((resolve, reject)=>{
+            axios.delete('vehicleType', {params:params})
+                .then((res) => {
+                    return resolve(res)
+                }).catch((err) => {
+                return resolve(err)
+            })
+        })
+        return await promise;
+    }
+
+    updateVehicleType = async (data) =>{
+        const promise = new Promise((resolve, reject) => {
+            axios.put('vehicleType',data)
+                .then((res)=>{
+                    return resolve(res)
+                }).catch((err)=>{
+                return resolve(err)
+            })
+        });
+        return await promise;
+    }
 }
-export  default new DriverService();
+export  default new VehicleTypeService();
