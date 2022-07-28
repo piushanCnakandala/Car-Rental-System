@@ -3,7 +3,7 @@ import {
   DialogContent,
   DialogTitle,
   Grid,
-  IconButton,
+  IconButton, Tooltip,
   Typography,
 } from "@mui/material";
 import React, { Component } from "react";
@@ -16,6 +16,12 @@ import { withStyles } from "@mui/styles";
 import { styleSheet } from "./styles";
 import CloseIcon from "@mui/icons-material/Close";
 import AddNewVehicle from "../../../components/AddVehicle";
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import VehicleService from "../../../services/VehicleService";
+import CustomSnackBar from "../../../components/common/SnakBar";
+
+
 class VehicleManage extends Component {
   constructor(props) {
     super(props);
@@ -32,7 +38,7 @@ class VehicleManage extends Component {
       //  for data table
       columns: [
         {
-          field: "registrationNumber",
+          field: "registration_Number",
           headerName: "Reg Num",
           width: 150,
         },
@@ -44,32 +50,32 @@ class VehicleManage extends Component {
         },
 
         {
-          field: "color",
+          field: "colour",
           headerName: "color",
           width: 125,
           sortable: false,
         },
 
         {
-          field: "fuelType",
-          headerName: "Fule Type",
+          field: "fuel_Type",
+          headerName: "Fuel Type",
           width: 150,
         },
 
         {
-          field: "noOfPassengers",
+          field: "no_Of_Passengers",
           headerName: "Num. Passengers",
           width: 150,
         },
 
         {
-          field: "runningKm",
+          field: "running_Km",
           headerName: "Running km",
           width: 150,
         },
 
         {
-          field: "transmissionType",
+          field: "transmission_Type",
           headerName: "Transmission Type",
           width: 150,
         },
@@ -81,7 +87,7 @@ class VehicleManage extends Component {
         },
 
         {
-          field: "type",
+          field: "vehicleType",
           headerName: "Type",
           width: 150,
         },
@@ -96,20 +102,76 @@ class VehicleManage extends Component {
           field: "action",
           headerName: "Action",
           width: 150,
+          renderCell: (params) => {
+            return (
+                <>
+                  <Tooltip title="Edit">
+                    <IconButton onClick={async () => {
+                      await this.updateVehicle(params.row);
+                    }}>
+                      <EditIcon className={'text-blue-500'}/>
+                    </IconButton>
+                  </Tooltip>
+                  <Tooltip title="Delete">
+                    <IconButton onClick={async () => {
+                      await this.deleteVehicle(params.row.registration_Number);
+                    }}>
+                      <DeleteIcon className={'text-red-500'}/>
+                    </IconButton>
+                  </Tooltip>
+                </>
+            )
+          }
         },
       ],
     };
   }
 
+  updateVehicle = async (data) => {
+
+  }
+
+
+  deleteVehicle = async (id) => {
+    let params = {
+      regNo: id
+    }
+
+    let res = await VehicleService.deleteVehicle(params);
+    console.log(res)
+    if (res.status === 200) {
+      this.setState({
+        alert: true,
+        message: res.data.message,
+        severity: 'success'
+      });
+      this.loadData();
+    } else {
+      this.setState({
+        alert: true,
+        message: res.message,
+        severity: 'error'
+      });
+    }
+  }
   async loadData() {
-    // let resp = await PostService.fetchPosts();
-    const data = [];
-    this.setState({
-      loaded: true,
-      data: data,
-    });
-    console.log(this.state.data);
-    // console.log(JSON.stringify(resp.data));
+
+    let resp = await VehicleService.fetchVehicles();
+    let nData = [];
+    if (resp.status === 200) {
+      resp.data.data.map((value, index) => {
+        value.id = value.registration_Number;
+        value.type = value.vehicleType.vehicle_Type_Id
+        value.rateId = value.rates.rate_Id
+        nData.push(value)
+      })
+
+      this.setState({
+        loaded: true,
+        data: nData,
+      });
+    }
+    console.log(this.state.data)
   }
 
   componentDidMount() {
@@ -117,13 +179,22 @@ class VehicleManage extends Component {
     console.log("Mounted");
   }
 
+  componentDidUpdate(prevProps, prevState, snapshot) {
+    if (prevState.popup == true) {
+      this.loadData()
+    }
+  }
+
   render() {
     const { classes } = this.props;
     return (
+
+        <>
       <Grid container direction={"row"} columns="12">
         <Grid item xs={"auto"}>
           <Sidebar />
         </Grid>
+
         <Grid item xs className="">
           <Navbar />
           <Grid container item xs={"auto"} className="flex p-5 gap-5">
@@ -140,7 +211,7 @@ class VehicleManage extends Component {
                 onClick={() => this.setState({ popup: true })}
                 startIcon={<AddIcon />}
               />
-              <CommonButton
+             {/* <CommonButton
                 variant="outlined"
                 label="Add Vehicle Rates"
                 startIcon={<AddIcon />}
@@ -149,7 +220,7 @@ class VehicleManage extends Component {
                 variant="outlined"
                 label="Add Vehicle Types"
                 startIcon={<AddIcon />}
-              />
+              />*/}
             </Grid>
             <Grid
               container
@@ -169,6 +240,7 @@ class VehicleManage extends Component {
             </Grid>
           </Grid>
         </Grid>
+      </Grid>
         <Dialog
           open={this.state.popup}
           maxWidth="md"
@@ -194,7 +266,17 @@ class VehicleManage extends Component {
             <AddNewVehicle/>
           </DialogContent>
         </Dialog>
-      </Grid>
+        <CustomSnackBar
+            open={this.state.alert}
+            onClose={() => {
+              this.setState({alert: false})
+            }}
+            message={this.state.message}
+            autoHideDuration={3000}
+            severity={this.state.severity}
+            variant={'filled'}
+        />
+      </>
     );
   }
 }

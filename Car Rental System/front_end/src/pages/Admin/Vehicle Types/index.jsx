@@ -12,6 +12,7 @@ import AddVehicleType from "../../../components/AddVehicleType";
 import VehicleTypeService from "../../../services/VehicleTypeService";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import CustomSnackBar from "../../../components/common/SnakBar";
 
 class VehicleType extends Component {
     constructor(props) {
@@ -84,7 +85,7 @@ class VehicleType extends Component {
 
     deleteVehicleType = async (id) => {
         let params = {
-            typeId: id
+            id: id
         }
         let res = await VehicleTypeService.deleteVehicleType(params)
         if (res.status === 200){
@@ -101,6 +102,7 @@ class VehicleType extends Component {
                 severity: 'error'
             })
         }
+        this.loadVtypeData()
     }
 
     updateVehicleType = async (data) => {
@@ -206,6 +208,16 @@ class VehicleType extends Component {
                         <AddVehicleType/>
                     </DialogContent>
                 </Dialog>
+                <CustomSnackBar
+                    open={this.state.alert}
+                    onClose={() => {
+                        this.setState({alert: false})
+                    }}
+                    message={this.state.message}
+                    autoHideDuration={3000}
+                    severity={this.state.severity}
+                    variant={'filled'}
+                />
             </Grid>
         );
     }

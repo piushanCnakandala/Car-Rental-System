@@ -104,7 +104,7 @@ class AddVehicleType extends Component {
                             label="Vehicle Type ID"
                             onChange={this.handleChange}
                             name="vehicle_Type_Id"
-                            value={this.state.formData.password}
+                            value={this.state.formData.vehicle_Type_Id}
                             validators={["required"]}
                             errorMessages={["This field is required"]}
                             className="w-full"
@@ -114,7 +114,7 @@ class AddVehicleType extends Component {
                             label="Type"
                             onChange={this.handleChange}
                             name="type"
-                            value={this.state.formData.password}
+                            value={this.state.formData.type}
                             validators={["required"]}
                             errorMessages={["This field is required"]}
                             className="w-full"
@@ -124,7 +124,7 @@ class AddVehicleType extends Component {
                             label="L.D.W"
                             onChange={this.handleChange}
                             name="loss_Damage_Waiver"
-                            value={this.state.formData.password}
+                            value={this.state.formData.loss_Damage_Waiver}
                             validators={["required"]}
                             errorMessages={["This field is required"]}
                             className="w-full"
@@ -143,7 +143,7 @@ class AddVehicleType extends Component {
                 </Grid>
             </ValidatorForm>
 
-        </Grid>);
+        </Grid>
                 <CustomSnackBar
                     open={this.state.alert}
                     onClose={() => {
