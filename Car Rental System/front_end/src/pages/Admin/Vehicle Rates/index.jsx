@@ -12,6 +12,7 @@ import AddVehicleRates from "../../../components/AddVehicleRates";
 import RateService from "../../../services/RateService";
 import EditIcon from "@mui/icons-material/Edit";
 import DeleteIcon from "@mui/icons-material/Delete";
+import CustomSnackBar from "../../../components/common/SnakBar";
 
 class VehicleRates extends Component {
     constructor(props) {
@@ -83,7 +84,7 @@ class VehicleRates extends Component {
                                 </Tooltip>
                                 <Tooltip title="Delete">
                                     <IconButton onClick={async () => {
-                                        await this.deleteRates(params.row.rateId);
+                                        await this.deleteRates(params.row.rate_Id);
                                     }}>
                                         <DeleteIcon className={'text-red-500'}/>
                                     </IconButton>
@@ -104,7 +105,7 @@ class VehicleRates extends Component {
 
     deleteRates = async (id) => {
         let params = {
-            rate_Id: id
+            id:id
         }
         let res = await RateService.deleteRates(params);
         console.log(res)
@@ -122,17 +123,18 @@ class VehicleRates extends Component {
                 severity: 'error'
             });
         }
+        this.loadData();
     }
 
     updateRates = async (data) => {
         const row = data;
         let vehicleRates = {
-            "rateId": row.rate_Id,
-            "monthlyRate": row.monthly_rate,
-            "dailyRate": row.daily_Rate,
-            "freeKmForaMonth": row.free_Km_Month,
-            "freeKmForaDay": row.free_Km_Day,
-            "pricePerExtraKm": row.extra_Km_Price
+            "rate_Id": row.rate_Id,
+            "monthly_rate": row.monthly_rate,
+            "daily_Rate": row.daily_Rate,
+            "free_Km_Month": row.free_Km_Month,
+            "free_Km_Day": row.free_Km_Day,
+            "extra_Km_Price": row.extra_Km_Price
         }
         await this.setState({vehicleRates: vehicleRates});
         await this.setState({
@@ -229,6 +231,16 @@ class VehicleRates extends Component {
                         <AddVehicleRates/>
                     </DialogContent>
                 </Dialog>
+                <CustomSnackBar
+                    open={this.state.alert}
+                    onClose={() => {
+                        this.setState({alert: false})
+                    }}
+                    message={this.state.message}
+                    autoHideDuration={3000}
+                    severity={this.state.severity}
+                    variant={'filled'}
+                />
             </Grid>
         );
     }
