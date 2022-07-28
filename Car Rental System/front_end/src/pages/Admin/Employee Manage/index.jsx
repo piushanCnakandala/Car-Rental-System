@@ -1,4 +1,4 @@
-import {Dialog, DialogContent, DialogTitle, Grid, IconButton, Typography,} from "@mui/material";
+import {Dialog, DialogContent, DialogTitle, Grid, IconButton, Tooltip, Typography,} from "@mui/material";
 import React, {Component} from "react";
 import Navbar from "../../../components/common/Navbar/Admin";
 import Sidebar from "../../../components/common/Sidebar";
@@ -9,7 +9,11 @@ import {withStyles} from "@mui/styles";
 import {styleSheet} from "./styles";
 import CloseIcon from "@mui/icons-material/Close";
 import AddDriver from "../../../components/AddDriver";
-
+import EditIcon from "@mui/icons-material/Edit";
+import DeleteIcon from "@mui/icons-material/Delete";
+import EmployeeService from "../../../services/EmployeeService";
+import AddEmployee from "../../../components/AddVehicle";
+import CustomSnackBar from "../../../components/common/SnakBar";
 class EmployeeManage extends Component {
     constructor(props) {
         super(props);
@@ -26,7 +30,7 @@ class EmployeeManage extends Component {
             //  for data table
             columns: [
                 {
-                    field: "staffId",
+                    field: "staff_Id",
                     headerName: "Employee ID",
                     width: 200,
                 },
@@ -45,7 +49,7 @@ class EmployeeManage extends Component {
                 },
 
                 {
-                    field: "mobileNo",
+                    field: "mobile_Number",
                     headerName: "Mobile No.",
                     width: 200,
                     sortable: false,
@@ -76,20 +80,95 @@ class EmployeeManage extends Component {
                     field: "Action",
                     headerName: "Action",
                     width: 200,
+
+                    renderCell: (params) => {
+                        return (
+                            <>
+                                <Tooltip title="Edit">
+                                    <IconButton onClick={async () => {
+                                        await this.updateEmployee(params.row);
+                                    }}>
+                                        <EditIcon className={'text-blue-500'}/>
+                                    </IconButton>
+                                </Tooltip>
+                                <Tooltip title="Delete">
+                                    <IconButton onClick={async () => {
+                                        await this.deleteEmployee(params.row.staffId);
+                                    }}>
+                                        <DeleteIcon className={'text-red-500'}/>
+                                    </IconButton>
+                                </Tooltip>
+                            </>
+                        )
+                    }
                 },
             ],
         };
     }
 
+    componentDidUpdate(prevProps, prevState, snapshot) {
+        console.log("did")
+        if (prevState.popup == true){
+            console.log("did t")
+            this.loadData()
+        }
+    }
+
+    updateEmployee = async (data) => {
+        const row = data;
+        let updateEmployee={
+            staff_Id: row.staff_Id,
+            name: row.name,
+            address: row.address,
+            mobile_Number: row.mobile_Number,
+            email: row.email,
+            password: row.password,
+            type: row.type,
+        }
+        await this.setState({updateEmployee:updateEmployee});
+        await this.setState({
+            popup:true,
+            isUpdate:true
+        })
+    }
+
+
+    deleteEmployee = async (id) => {
+        let params = {
+            staff_Id: id
+        }
+        let res = await EmployeeService.deleteEmployee(params);
+        console.log(res)
+        if (res.status === 200) {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'success'
+            });
+            await this.loadData();
+        } else {
+            this.setState({
+                alert: true,
+                message: res.message,
+                severity: 'error'
+            });
+        }
+    }
+
     async loadData() {
-        // let resp = await PostService.fetchPosts();
-        const data = [];
-        this.setState({
-            loaded: true,
-            data: data,
-        });
-        console.log(this.state.data);
-        // console.log(JSON.stringify(resp.data));
+        let resp = await EmployeeService.fetchEmployee();
+        let nData = [];
+        if (resp.status === 200) {
+            resp.data.data.map((value, index) => {
+                value.id = value.staff_Id;
+                nData.push(value)
+            })
+
+            this.setState({
+                loaded: true,
+                data: nData,
+            });
+        }
     }
 
     componentDidMount() {
@@ -161,11 +240,21 @@ class EmployeeManage extends Component {
                         </div>
                     </DialogTitle>
                     <DialogContent dividers>
-                        <AddDriver/>
+                        <AddEmployee isUpdate={this.state.isUpdate} obj={this.state.updateEmployee}/>
                     </DialogContent>
                 </Dialog>
-            </Grid>
-        );
+                <CustomSnackBar
+                    open={this.state.alert}
+                    onClose={() => {
+                        this.setState({alert: false})
+                    }}
+                    message={this.state.message}
+                    autoHideDuration={3000}
+                    severity={this.state.severity}
+                    variant={'filled'}
+                />
+
+    </> );
     }
 }
 
