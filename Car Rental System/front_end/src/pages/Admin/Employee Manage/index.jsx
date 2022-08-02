@@ -136,7 +136,7 @@ class EmployeeManage extends Component {
 
     deleteEmployee = async (id) => {
         let params = {
-            staff_Id: id
+            id: id
         }
         let res = await EmployeeService.deleteEmployee(params);
         console.log(res)

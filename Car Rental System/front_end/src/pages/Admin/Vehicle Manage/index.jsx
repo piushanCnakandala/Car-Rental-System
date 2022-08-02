@@ -134,7 +134,7 @@ class VehicleManage extends Component {
 
   deleteVehicle = async (id) => {
     let params = {
-      regNo: id
+      id: id
     }
 
     let res = await VehicleService.deleteVehicle(params);
@@ -211,16 +211,7 @@ class VehicleManage extends Component {
                 onClick={() => this.setState({ popup: true })}
                 startIcon={<AddIcon />}
               />
-             {/* <CommonButton
-                variant="outlined"
-                label="Add Vehicle Rates"
-                startIcon={<AddIcon />}
-              />
-              <CommonButton
-                variant="outlined"
-                label="Add Vehicle Types"
-                startIcon={<AddIcon />}
-              />*/}
+
             </Grid>
             <Grid
               container
@@ -263,7 +254,7 @@ class VehicleManage extends Component {
             </div>
           </DialogTitle>
           <DialogContent dividers>
-            <AddNewVehicle/>
+            <AddNewVehicle isUpdate={this.state.isUpdate}/>
           </DialogContent>
         </Dialog>
         <CustomSnackBar

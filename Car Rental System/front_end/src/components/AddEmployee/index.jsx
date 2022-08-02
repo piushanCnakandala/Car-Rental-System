@@ -82,9 +82,9 @@ class AddEmployee extends Component {
                 this.setState(Object.assign(this.state.formData, {address: address}));
                 break;
 
-            case "mobileNo":
-                const mobileNo = event.target.value;
-                this.setState(Object.assign(this.state.formData, {mobileNo: mobileNo}));
+            case "mobile_Number":
+                const mobile_Number = event.target.value;
+                this.setState(Object.assign(this.state.formData, {mobile_Number: mobile_Number}));
                 break;
 
             case "email":
