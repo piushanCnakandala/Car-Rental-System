@@ -14,12 +14,12 @@ class AddVehicleRates extends Component {
         super(props);
         this.state = {
             formData: {
-                "rate_Id": props.isUpdate ? props.obj.rate_Id : '',
-                "daily_Rate": props.isUpdate ? props.obj.daily_Rate : '',
-                "monthly_rate": props.isUpdate ? props.obj.monthly_rate : '',
-                "free_Km_Day": props.isUpdate ? props.obj.free_Km_Day : '',
-                "free_Km_Month": props.isUpdate ? props.obj.free_Km_Month : '',
-                "extra_Km_Price": props.isUpdate ? props.obj.extra_Km_Price : '',
+                "rate_Id": props.isUpdate ? props.typeObj.rate_Id : '',
+                "daily_Rate": props.isUpdate ? props.typeObj.daily_Rate : '',
+                "monthly_rate": props.isUpdate ? props.typeObj.monthly_rate : '',
+                "free_Km_Day": props.isUpdate ? props.typeObj.free_Km_Day : '',
+                "free_Km_Month": props.isUpdate ? props.typeObj.free_Km_Month : '',
+                "extra_Km_Price": props.isUpdate ? props.typeObj.extra_Km_Price : '',
             },
             alert: false,
             message: '',

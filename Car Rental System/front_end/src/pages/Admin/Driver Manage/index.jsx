@@ -87,14 +87,17 @@ class DriverManage extends Component {
                         return (
                             <>
                                 <Tooltip title="Edit">
-                                    <IconButton onClick={() => {
-                                        this.updateDriver(params.row);
+                                    <IconButton onClick={async () => {
+                                        await this.updateDriver(params.row);
                                     }}>
                                         <EditIcon className={'text-blue-500'}/>
                                     </IconButton>
                                 </Tooltip>
+
                                 <Tooltip title="Delete">
-                                    <IconButton>
+                                    <IconButton onClick={async () =>{
+                                        await this.deleteDriver(params.row.id)
+                                    }}>
                                         <DeleteIcon className={'text-red-500'}/>
                                     </IconButton>
                                 </Tooltip>
@@ -113,7 +116,7 @@ class DriverManage extends Component {
 
     deleteDriver = async (id) => {
         let params = {
-            driverId: id
+            id: id
         }
         let res = await DriverService.deleteDriver(params);
         console.log(res)
@@ -250,8 +253,9 @@ class DriverManage extends Component {
                             </IconButton>
                         </div>
                     </DialogTitle>
-                    <DialogContent driverObj={this.state.updateDriver[0]}>
-                        <AddDriver />
+                    <DialogContent >
+                        <AddDriver isUpdate={this.state.isUpdate} obj={this.state.updateDriver}/>
+
                     </DialogContent>
                 </Dialog>
             </Grid>

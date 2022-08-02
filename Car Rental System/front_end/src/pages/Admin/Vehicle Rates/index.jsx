@@ -22,8 +22,11 @@ class VehicleRates extends Component {
             alert: false,
             message: "",
             severity: "",
-            isUpdate: false,
+
+
             vehicleRates:{},
+            isUpdate: false,
+
 
 
             //  for table
@@ -131,6 +134,7 @@ class VehicleRates extends Component {
 
     updateRates = async (data) => {
         const row = data;
+        console.log(row);
         let vehicleRates = {
             "rate_Id": row.rate_Id,
             "monthly_rate": row.monthly_rate,
@@ -139,11 +143,13 @@ class VehicleRates extends Component {
             "free_Km_Day": row.free_Km_Day,
             "extra_Km_Price": row.extra_Km_Price
         }
-        await this.setState({updateVehicleRates: vehicleRates});
+        await this.setState({ vehicleRates: vehicleRates});
         await this.setState({
             popup: true,
             isUpdate: true
         })
+
+        console.log('s',this.state.vehicleRates)
     }
 
     async loadData() {
@@ -231,7 +237,7 @@ class VehicleRates extends Component {
                         </div>
                     </DialogTitle>
                     <DialogContent dividers>
-                        <AddVehicleRates isUpdate={this.state.isUpdate} typeObj={this.state.updateVehicleRates}/>
+                        <AddVehicleRates isUpdate={this.state.isUpdate} typeObj={this.state.vehicleRates}/>
                     </DialogContent>
                 </Dialog>
                 <CustomSnackBar
