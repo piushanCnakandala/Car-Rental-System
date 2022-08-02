@@ -22,6 +22,9 @@ class VehicleRates extends Component {
             alert: false,
             message: "",
             severity: "",
+            isUpdate: false,
+            vehicleRates:{},
+
 
             //  for table
             data: [],
@@ -136,7 +139,7 @@ class VehicleRates extends Component {
             "free_Km_Day": row.free_Km_Day,
             "extra_Km_Price": row.extra_Km_Price
         }
-        await this.setState({vehicleRates: vehicleRates});
+        await this.setState({updateVehicleRates: vehicleRates});
         await this.setState({
             popup: true,
             isUpdate: true
@@ -228,7 +231,7 @@ class VehicleRates extends Component {
                         </div>
                     </DialogTitle>
                     <DialogContent dividers>
-                        <AddVehicleRates/>
+                        <AddVehicleRates isUpdate={this.state.isUpdate} typeObj={this.state.updateVehicleRates}/>
                     </DialogContent>
                 </Dialog>
                 <CustomSnackBar

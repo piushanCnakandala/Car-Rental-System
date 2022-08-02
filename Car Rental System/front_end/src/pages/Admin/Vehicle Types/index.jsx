@@ -23,6 +23,9 @@ class VehicleType extends Component {
             message: "",
             severity: "",
 
+            isUpdate: false,
+            updateVehicleType:{},
+
             //  for table
             data: [],
             loaded: false,
@@ -205,7 +208,7 @@ class VehicleType extends Component {
                         </div>
                     </DialogTitle>
                     <DialogContent dividers>
-                        <AddVehicleType/>
+                        <AddVehicleType isUpdate={this.state.isUpdate} typeObj={this.state.updateVehicleType}/>
                     </DialogContent>
                 </Dialog>
                 <CustomSnackBar

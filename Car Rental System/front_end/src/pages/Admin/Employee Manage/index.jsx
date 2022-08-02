@@ -179,6 +179,7 @@ class EmployeeManage extends Component {
     render() {
         const {classes} = this.props;
         return (
+            <>
             <Grid container direction={"row"} columns="12">
                 <Grid item xs={"auto"}>
                     <Sidebar/>
@@ -217,6 +218,7 @@ class EmployeeManage extends Component {
                             />
                         </Grid>
                     </Grid>
+                </Grid>
                 </Grid>
                 <Dialog
                     open={this.state.popup}

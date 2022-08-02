@@ -9,6 +9,7 @@ import VehicleType from "../pages/Admin/Vehicle Types";
 import Dashboard from "../pages/dashboard";
 import DriverManage from "../pages/Admin/Driver Manage";
 import CustomerManage from "../pages/Admin/Customer Manage";
+import EmployeeManage from "../pages/Admin/Employee Manage";
 
 
 function AdminManageDashboard() {
@@ -33,6 +34,7 @@ function App() {
                     <Route path="vehicletype" element={<VehicleType/>}/>
                     <Route path="drivermanage" element={<DriverManage/>}/>
                     <Route path="customermanage" element={<CustomerManage/>}/>
+                    <Route path="employeemanage" element={<EmployeeManage/>}/>
                     <Route path="test" element={<AddNewVehicle />} />
                 </Route>}
             </Route>

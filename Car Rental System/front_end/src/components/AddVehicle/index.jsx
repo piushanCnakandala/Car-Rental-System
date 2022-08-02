@@ -13,7 +13,7 @@ import AddPhotoAlternateIcon from '@mui/icons-material/AddPhotoAlternate';
 
 
 
-class AddEmployee extends Component {
+class AddNewVehicle extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -366,4 +366,4 @@ class AddEmployee extends Component {
     }
 }
 
-export default withStyles(styleSheet)(AddEmployee);
+export default withStyles(styleSheet)(AddNewVehicle);
