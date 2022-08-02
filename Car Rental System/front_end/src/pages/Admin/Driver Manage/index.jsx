@@ -23,11 +23,11 @@ class DriverManage extends Component {
             message: "",
             severity: "",
 
-            updateDriver:[],
+            updateDriver:{},
+            isUpdate: false,
 
             //  for table
             data: [],
-            datas: [],
             loaded: false,
 
             //  for data table

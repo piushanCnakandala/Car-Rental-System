@@ -96,7 +96,7 @@ class AddDriver extends Component {
         let id = event.target.name;
 
         switch (id) {
-            case "driverId":
+            case "driver_Id":
                 const driver_Id = event.target.value;
                 this.setState(Object.assign(this.state.formData, {driver_Id: driver_Id}));
                 // this.setState({ userId });
@@ -111,7 +111,7 @@ class AddDriver extends Component {
                 this.setState(Object.assign(this.state.formData, {address: address}));
                 // this.setState({ userId });
                 break;
-            case "mobileNo":
+            case "mobile_Number":
                 const mobile_Number = event.target.value;
                 this.setState(Object.assign(this.state.formData, {mobile_Number: mobile_Number}));
                 // this.setState({ userId });
