@@ -11,10 +11,10 @@ class Footer extends Component {
             <Grid container direction="column">
                 <Grid container gap='5px' justifyContent={'space-evenly'} className=" text-white bg-stone-800 ">
 
-                    <Grid container direction='column' alignItems={'center'} justifyContent='center' className=" h-20 w-56">
+                    {/*<Grid container direction='column' alignItems={'center'} justifyContent='center' className=" h-20 w-56">
                         <Grid container gap="10px" direction="row" justifyContent={'center'} alignItems='center' className="">
                             <Grid item className="">
-                                <MapOutlinedIcon fontSize="large" className="text-yellow-400"/>
+                                <MapOutlinedIcon fontSize="large" className="text-blue-400"/>
                             </Grid>
                             <Grid container direction="column" item className=" w-40">
                                 <Grid>
@@ -30,7 +30,7 @@ class Footer extends Component {
                     <Grid container direction='column' alignItems={'center'} justifyContent='center' className=" h-20 w-56">
                         <Grid container gap="10px" direction="row" justifyContent={'center'} alignItems='center' className="">
                             <Grid item className="">
-                                <AccessTimeOutlinedIcon fontSize="large" className="text-yellow-400"/>
+                                <AccessTimeOutlinedIcon fontSize="large" className="text-blue-400"/>
                             </Grid>
                             <Grid container direction="column" item className=" w-40">
                                 <Grid>
@@ -46,7 +46,7 @@ class Footer extends Component {
                     <Grid container direction='column' alignItems={'center'} justifyContent='center' className=" h-20 w-56">
                         <Grid container gap="10px" direction="row" justifyContent={'center'} alignItems='center' className="">
                             <Grid item className="">
-                                <DraftsOutlinedIcon fontSize="large" className="text-yellow-400"/>
+                                <DraftsOutlinedIcon fontSize="large" className="text-blue-400"/>
                             </Grid>
                             <Grid container direction="column" item className=" w-40">
                                 <Grid>
@@ -62,7 +62,7 @@ class Footer extends Component {
                     <Grid container direction='column' alignItems={'center'} justifyContent='center' className=" h-20 w-56">
                         <Grid container gap="10px" direction="row" justifyContent={'center'} alignItems='center' className="">
                             <Grid item className="">
-                                <AddIcCallOutlinedIcon fontSize="large" className="text-yellow-400"/>
+                                <AddIcCallOutlinedIcon fontSize="large" className="text-blue-400"/>
                             </Grid>
                             <Grid container direction="column" item className=" w-40">
                                 <Grid>
@@ -73,7 +73,7 @@ class Footer extends Component {
                                 </Grid>
                             </Grid>
                         </Grid>
-                    </Grid>
+                    </Grid>*/}
 
                 </Grid>
                 <Grid item>
@@ -108,6 +108,7 @@ class Footer extends Component {
                                  </div>
 
                             </Grid>
+
                             <Grid
                                 container
                                 item

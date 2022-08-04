@@ -22,7 +22,7 @@ class PremiumCars extends Component {
             <Typography
               variant="h4"
               component="h2"
-              className="font-extrabold p-5 text-yellow-500 underline  underline-offset-4 font-dosis"
+              className="font-extrabold p-5 text-black underline  underline-offset-4 font-dosis"
             >
               Premium Cars
             </Typography>
@@ -50,7 +50,7 @@ class PremiumCars extends Component {
               size="large"
               variant="outlined"
               label="See More"
-              className="text-white border-white hover:bg-white hover:text-black font-bold"
+              className="text-black border-black hover:bg-white hover:text-black font-bold"
             />
           </Grid>
         </Grid>
