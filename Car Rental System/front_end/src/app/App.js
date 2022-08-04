@@ -10,6 +10,8 @@ import Dashboard from "../pages/dashboard";
 import DriverManage from "../pages/Admin/Driver Manage";
 import CustomerManage from "../pages/Admin/Customer Manage";
 import EmployeeManage from "../pages/Admin/Employee Manage";
+import RegisterCustomer from "../components/RegisterCustomer";
+
 
 
 function AdminManageDashboard() {
@@ -24,7 +26,7 @@ function App() {
     return (
         <Routes>
             <Route exact path="/" element={<Dashboard/>}/>
-            <Route path="/register" element={<CustomerManage/>}/>
+            <Route path="/register" element={<RegisterCustomer/>}/>
 
              <Route path="admin">
                 <Route index element={<LoginAdmin/>}/>
