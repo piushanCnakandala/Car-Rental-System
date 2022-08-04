@@ -1,6 +1,7 @@
 package lk.Spring.service.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
+import com.fasterxml.jackson.databind.ObjectMapper;
 import lk.Spring.dto.CustomerDTO;
 import lk.Spring.dto.CustomerImgDTO;
 import lk.Spring.entity.Customer;
@@ -28,6 +29,9 @@ public class CustomerServiceImpl implements CustomerService {
 
     @Autowired
     private ModelMapper modelMapper;
+
+    @Autowired
+    private ObjectMapper objectMapper;
 
     @Override
     public void saveCustomer(CustomerDTO customerDTO) {
@@ -86,14 +90,14 @@ if(customerRepo.existsById(customerDTO.getId())){
             e.printStackTrace();
 
         }
-        if (!customerRepo.existsById(userDTO.getCusId())){
+        if (!customerRepo.existsById(userDTO.getId())){
 
             try {
                 String projectPath = new File(this.getClass().getProtectionDomain().getCodeSource().getLocation().toURI()).getParentFile().getParentFile().getAbsolutePath();
                 File uploadDir = new File(projectPath + "/uploads");
                 uploadDir.mkdir();
-                file.transferTo(new File(uploadDir.getAbsolutePath()+"/"+userDTO.getCusId()+"_"+file.getOriginalFilename()));
-                path="uploads/"+userDTO.getCusId()+"_"+file.getOriginalFilename();
+                file.transferTo(new File(uploadDir.getAbsolutePath()+"/"+userDTO.getId()+"_"+file.getOriginalFilename()));
+                path="uploads/"+userDTO.getId()+"_"+file.getOriginalFilename();
             } catch (URISyntaxException e) {
                 e.printStackTrace();
             } catch (IOException e) {
