@@ -1,6 +1,5 @@
-import customerService from "../../services/customerService";
+
 import {Grid} from "@mui/material";
-import IJSESnackBar from "../common/snackBar";
 import GDSEButton from "../common/Button";
 import Button from "@mui/material/Button";
 import Typography from "@mui/material/Typography";
@@ -11,6 +10,8 @@ import {TextValidator, ValidatorForm} from "react-material-ui-form-validator";
 import AddPhotoAlternateIcon from "@mui/icons-material/AddPhotoAlternate";
 import {withStyles} from "@mui/styles";
 import {styleSheet} from "./style";
+import CustomSnackBar from "../common/SnakBar";
+import CustomerService from "../../services/CustomerService";
 
 const {Component} = require("react");
 
@@ -47,7 +48,7 @@ class RegisterCustomer extends Component {
         data.append("customer",JSON.stringify(formData));
         data.append("file",this.state.verification)
 
-        let res = await customerService.postCustomer(data)
+        let res = await CustomerService.postCustomer(data)
         if (res.status === 201){
             this.setState({
                 alert: true,
@@ -244,7 +245,7 @@ class RegisterCustomer extends Component {
                     </ValidatorForm>
                 </Grid>
             </Grid>
-            <IJSESnackBar
+            <CustomSnackBar
                 open={this.state.alert}
                 onClose={() => {
                     this.setState({alert: false})
