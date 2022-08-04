@@ -2,6 +2,7 @@ package lk.Spring.service.impl;
 
 import com.fasterxml.jackson.core.JsonProcessingException;
 import lk.Spring.dto.CustomerDTO;
+import lk.Spring.dto.CustomerImgDTO;
 import lk.Spring.entity.Customer;
 import lk.Spring.repo.CustomerRepo;
 import lk.Spring.service.CustomerService;
@@ -16,6 +17,7 @@ import javax.transaction.Transactional;
 import java.io.File;
 import java.io.IOException;
 import java.net.URISyntaxException;
+import java.util.ArrayList;
 import java.util.List;
 @Service
 @Transactional
