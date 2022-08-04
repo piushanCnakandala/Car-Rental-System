@@ -24,7 +24,7 @@ public class VehicleIMGController {
         return  new ResponseUtil(200,"saved",null);
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
+
     @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil deleteVehicleImg(@RequestParam String id){
        vehicleIMGService.deleteVehicleIMG(id);

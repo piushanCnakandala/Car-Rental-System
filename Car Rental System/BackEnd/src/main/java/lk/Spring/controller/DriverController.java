@@ -25,7 +25,7 @@ public class DriverController {
         return  new ResponseUtil(200,"saved",null);
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
+
     @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil deleteDriver(@RequestParam String id){
         driverService.deleteDriver(id);

@@ -22,12 +22,12 @@ public class VehicleController {
     @PostMapping(produces = MediaType.APPLICATION_JSON_VALUE)
 
     public ResponseUtil saveVehicle(/*@ModelAttribute */@RequestBody VehicleDTO vehicleDTO){
-        System.out.println(vehicleDTO.toString());
+
        vehicleService.saveVehicle(vehicleDTO);
         return  new ResponseUtil(200,"saved",null);
     }
 
-    @ResponseStatus(HttpStatus.CREATED)
+
     @DeleteMapping(params = {"id"},produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseUtil deleteVehicle(@RequestParam String id){
         vehicleService.deleteVehicle(id);
