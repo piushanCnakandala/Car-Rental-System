@@ -9,6 +9,8 @@ import {withStyles} from "@mui/styles";
 import {styleSheet} from "./styles";
 import CloseIcon from "@mui/icons-material/Close";
 import AddDriver from "../../../components/AddDriver";
+import CustomerService from "../../../services/CustomerService";
+import CustomSnackBar from "../../../components/common/SnakBar";
 
 class CustomerManage extends Component {
     constructor(props) {
@@ -26,7 +28,7 @@ class CustomerManage extends Component {
             //  for data table
             columns: [
                 {
-                    field: "regUserId",
+                    field: "id",
                     headerName: "Customer ID",
                     width: 175,
                 },
@@ -45,21 +47,21 @@ class CustomerManage extends Component {
                 },
 
                 {
-                    field: "mobileNo",
+                    field: "mobile_Number",
                     headerName: "Mobile No.",
                     width: 175,
                     sortable: false,
                 },
 
                 {
-                    field: "nicNo",
+                    field: "nIC_Number",
                     headerName: "NIC",
                     width: 175,
                     sortable: false,
                 },
 
                 {
-                    field: "drivingLicenseNo",
+                    field: "driving_License_Number",
                     headerName: "Driving License No",
                     width: 175,
                     sortable: false,
@@ -88,15 +90,44 @@ class CustomerManage extends Component {
         };
     }
 
+    deleteUser = async (id) => {
+
+        let params = {
+            id: id,
+        }
+        let res = await CustomerService.deleteCustomers(params)
+        console.log(res)
+        if (res.status === 200) {
+            this.setState({
+                alert: true,
+                message: res.data.message,
+                severity: 'success'
+            });
+            this.loadData();
+        } else {
+            this.setState({
+                alert: true,
+                message: res.message,
+                severity: 'error'
+            });
+        }
+    }
+
+
     async loadData() {
-        // let resp = await PostService.fetchPosts();
-        const data = [];
-        this.setState({
-            loaded: true,
-            data: data,
-        });
-        console.log(this.state.data);
-        // console.log(JSON.stringify(resp.data));
+        let resp = await CustomerService.fetchCustomers();
+        let nData = [];
+        if (resp.status === 200) {
+            resp.data.data.map((value, index) => {
+                value.id = value.id;
+                nData.push(value)
+            })
+
+            this.setState({
+                loaded: true,
+                data: nData,
+            });
+        }
     }
 
     componentDidMount() {
@@ -107,59 +138,73 @@ class CustomerManage extends Component {
     render() {
         const {classes} = this.props;
         return (
-            <Grid container direction={"row"} columns="12">
-                <Grid item xs={"auto"}>
-                    <Sidebar/>
-                </Grid>
-                <Grid item xs className="">
-                    <Navbar/>
-                    <Grid container item xs={"auto"} className="flex p-5 gap-5">
-                        <Grid
-                            container
-                            item
-                            xs={12}
-                            gap="5px"
-                            className="rounded-lg p-5 shadow-[0_3px_10px_rgb(0,0,0,0.2)]"
-                            style={{height: "700px"}}
-                        >
-                            <CommonDataTable
-                                columns={this.state.columns}
-                                rows={this.state.data}
-                                rowsPerPageOptions={5}
-                                pageSize={10}
-                                // checkboxSelection={true}
-                            />
+            <>
+                <Grid container direction={"row"} columns="12">
+                    <Grid item xs={"auto"}>
+                        <Sidebar/>
+                    </Grid>
+                    <Grid item xs className="">
+                        <Navbar/>
+                        <Grid container item xs={"auto"} className="flex p-5 gap-5">
+                            <Grid
+                                container
+                                item
+                                xs={12}
+                                gap="5px"
+                                className="rounded-lg p-5 shadow-[0_3px_10px_rgb(0,0,0,0.2)]"
+                                style={{height: "700px"}}
+                            >
+                                <CommonDataTable
+                                    columns={this.state.columns}
+                                    rows={this.state.data}
+                                    rowsPerPageOptions={5}
+                                    pageSize={10}
+                                    // checkboxSelection={true}
+                                />
+                            </Grid>
                         </Grid>
                     </Grid>
-                </Grid>
-                <Dialog
-                    open={this.state.popup}
-                    maxWidth="md"
-                    classes={{paper: classes.dialogWraper}}
-                >
-                    <DialogTitle style={{paddingRight: "0px"}}>
-                        <div style={{display: "flex"}}>
-                            <Typography
-                                variant="h4"
-                                component="div"
-                                className="font-bold flex-grow"
-                                style={{flexGrow: 1}}
-                            >
-                                Add New Employee
-                            </Typography>
+                    <Dialog
+                        open={this.state.popup}
+                        maxWidth="md"
+                        classes={{paper: classes.dialogWraper}}
+                    >
+                        <DialogTitle style={{paddingRight: "0px"}}>
+                            <div style={{display: "flex"}}>
+                                <Typography
+                                    variant="h4"
+                                    component="div"
+                                    className="font-bold flex-grow"
+                                    style={{flexGrow: 1}}
+                                >
+                                    Add New Customer
+                                </Typography>
 
-                            <IconButton onClick={() => this.setState({popup: false})}>
-                                <CloseIcon/>
-                            </IconButton>
-                        </div>
-                    </DialogTitle>
-                    <DialogContent dividers>
-                        <AddDriver/>
-                    </DialogContent>
-                </Dialog>
-            </Grid>
+                                <IconButton onClick={() => this.setState({popup: false})}>
+                                    <CloseIcon/>
+                                </IconButton>
+                            </div>
+                        </DialogTitle>
+                        <DialogContent dividers>
+                            <AddDriver/>
+                        </DialogContent>
+                    </Dialog>
+                </Grid>
+                <CustomSnackBar
+                    open={this.state.alert}
+                    onClose={() => {
+                        this.setState({alert: false})
+                    }}
+                    message={this.state.message}
+                    autoHideDuration={3000}
+                    severity={this.state.severity}
+                    variant={'filled'}
+                />
+            </>
+
         );
     }
+
 }
 
 export default withStyles(styleSheet)(CustomerManage);
